@@ -68,10 +68,17 @@ class MainActivity : AppCompatActivity() {
         binding.buttonDelete.setOnClickListener {
             getInput = binding.textProcesses.text.toString()
             if(getInput.isNotEmpty()){
-                if(binding.textProcesses.text.toString().last() == ' '){
+                val separateInput = getInput.split(" ").toMutableList()
+                val lastNum = separateInput[separateInput.size-1]
+                //-99
+                if(getInput.last() == ' '){
                     val stringWithoutLastChar = getInput.substring(0, getInput.length - 3)
                     binding.textProcesses.text = stringWithoutLastChar
-                }else{
+                }else if(lastNum[lastNum.length-2] == '-'){
+                    val stringWithoutLastTwoChar = getInput.substring(0, getInput.length - 2)
+                    binding.textProcesses.text = stringWithoutLastTwoChar
+                }
+                else{
                     val stringWithoutLastChar = getInput.substring(0, getInput.length - 1)
                     binding.textProcesses.text = stringWithoutLastChar
                 }
