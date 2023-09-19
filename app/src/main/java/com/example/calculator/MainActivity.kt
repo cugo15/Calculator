@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 if(getInput.last() == ' '){
                     val stringWithoutLastChar = getInput.substring(0, getInput.length - 3)
                     binding.textProcesses.text = stringWithoutLastChar
-                }else if(lastNum[lastNum.length-2] == '-'){
+                }else if(lastNum.toDouble()<0 && lastNum[lastNum.length-2] == '-'){
                     val stringWithoutLastTwoChar = getInput.substring(0, getInput.length - 2)
                     binding.textProcesses.text = stringWithoutLastTwoChar
                 }
@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 var formattedResult = "%.2f".format(result)
-                if(formattedResult.takeLast(3)==",00"){
+                if(formattedResult.takeLast(3)==",00" || formattedResult.takeLast(3)==".00"){
                     formattedResult = formattedResult.dropLast(3)
                 }
                 binding.textResult.text = formattedResult
